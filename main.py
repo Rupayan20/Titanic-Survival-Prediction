@@ -98,8 +98,31 @@ for k in tqdm(k_range) :
     scores[k] = metrics.accuracy_score(y_test, y_prediction)
     scores_list.append(metrics.accuracy_score(y_test, y_prediction))
     
-    from matplotlib import pyplot as plt
+from matplotlib import pyplot as plt
 plt.figure(figsize=(5, 5))
 plt.plot(k_range, scores_list)
 plt.xlabel("Value of K for the KNN Classifier")
 plt.ylabel("Testing Accuracy")
+
+knn = KNeighborsClassifier(n_neighbors=7)
+knn.fit(X_train, y_train)
+
+output_prediction = knn.predict(X_test)
+
+classes = {0 : "Will not survive", 1 : "Will survive"}
+
+# Features for testing are :
+# Pclass (1, 2, 3)	|  Sex (0, 1)  |  Age (Float Number)  |  Fare (Float Number)  |  Embarked (0, 1, 2)
+
+X_new_samples = [
+    [3, 1, 55.25, 8.25, 1], 
+    [2, 1, 12.25, 6.15, 0], 
+    [0, 1, 75.25, 22.25, 0],
+    [1, 0, 39.25, 74.65, 0],
+]
+
+y_predict = knn.predict(X_new_samples)
+print([classes[y_predict[i]] for i in range(len(y_predict))])
+
+accuracy = metrics.accuracy_score(y_test, output_prediction)
+print("The Accuracy of the Trained KNN Classifier is : {} % .".format(accuracy * 100))
