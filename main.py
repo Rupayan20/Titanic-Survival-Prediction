@@ -31,3 +31,17 @@ sns.barplot(
     y = "Survived"
 )
 plt.show()
+
+
+# Countplot for visualization of the total number of individual that had embarked, depending upon the dataset.
+# Embarked ID are S, C and Q (Southampton, Cherbourg, and Queenstown).
+plt.figure(figsize=(5, 5))
+sns.countplot(x = train_df["Embarked"])
+
+plt.figure(figsize=(5, 5))
+sns.barplot(
+    data = train_df, 
+    x = "Embarked",
+    y = "Survived",
+)
+plt.show()
