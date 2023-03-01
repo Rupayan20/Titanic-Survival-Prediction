@@ -4,6 +4,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 import seaborn as sns
 
+
 # Data Preprocessing and Exploratory Data Analysis
 train_df = pd.read_csv("https://drive.google.com/file/d/1_HsxBaBIbWIwEnGRkHhcS0MeJH355xun/view?usp=sharing")
 train_df.head(10)
@@ -20,3 +21,13 @@ train_df.info()
 
 train_df["Embarked"] = train_df["Embarked"].fillna("S")
 train_df.info()
+
+
+# Barplot for identifying the probabilty of the survival of an individual depending upon the Sex, Male of Female.
+plt.figure(figsize=(5, 5))
+sns.barplot(
+    data=train_df, 
+    x = "Sex", 
+    y = "Survived"
+)
+plt.show()
